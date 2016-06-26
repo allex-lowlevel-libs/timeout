@@ -72,7 +72,9 @@ function augmentWithNext(isFunction, Fifo, outlib){
     }
     _inimmediate = false;
     } catch(e) {
-      console.error(e.stack);
+      if (e && e.stack) {
+        console.error(e.stack);
+      }
       console.error(e);
     }
   }

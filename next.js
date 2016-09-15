@@ -8,11 +8,10 @@ function augmentWithNext(isFunction, Fifo, outlib){
     _eobj = {
       now: null
     },
-    _inimmediate = false;
     toc = 0;
   function setTo(){
     _lasttickin = _nexttickin;
-    to = (_lasttickin || _inimmediate) ? setTimeout(do_immediates,_lasttickin) : _setImmediate(do_immediates);
+    to = (_lasttickin) ? setTimeout(do_immediates,_lasttickin) : _setImmediate(do_immediates);
   }
   function clearTo(){
     if(to){
@@ -52,7 +51,6 @@ function augmentWithNext(isFunction, Fifo, outlib){
     if(to){
       to = null;
     }
-    _inimmediate = true;
     _nexttickin = Infinity;
     var start  = Date.now();
     _eobj.now = start;
@@ -61,16 +59,13 @@ function augmentWithNext(isFunction, Fifo, outlib){
     //console.log('drainConditionally done', _immediates.length);
     if(_immediates.length){
       if (_nexttickin === Infinity) {
-        _inimmediate = false;
         return;
       }
       if (to && _lasttickin === _nexttickin) {
-        _inimmediate = false;
         return;
       }
       go();
     }
-    _inimmediate = false;
     } catch(e) {
       if (e && e.stack) {
         console.error(e.stack);
@@ -97,9 +92,7 @@ function augmentWithNext(isFunction, Fifo, outlib){
       }
       */
       _nexttickin = delay;
-      if (!_inimmediate) {
-        go();
-      }
+      go();
     }
     return ret;
   }

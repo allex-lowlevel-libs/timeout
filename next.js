@@ -9,6 +9,7 @@ function augmentWithNext(isFunction, Fifo, outlib){
       now: null
     },
     toc = 0;
+  function dummyFunc () {}
   function setTo(){
     _lasttickin = _nexttickin;
     to = (_lasttickin) ? setTimeout(do_immediates,_lasttickin) : _setImmediate(do_immediates);
@@ -102,7 +103,11 @@ function augmentWithNext(isFunction, Fifo, outlib){
   }
   outlib.runNext = runNext;
   outlib.clearTimeout = function(item){
-    _immediates.remove(item);
+    if (item.content && item.content.length==2) {
+      item.content[0] = dummyFunc;
+      item.content[1] = 0;
+    }
+    //_immediates.remove(item);
   };
   outlib.destroyASAP = function (destroyable) {
     runNext(destroyable.destroy.bind(destroyable));

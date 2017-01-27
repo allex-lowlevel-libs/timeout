@@ -36,7 +36,7 @@ function augmentWithNext(isFunction, Fifo, outlib){
     }
     var tdiff = i[1]-_eobj.now;
     //console.log('immediater got', i, tdiff, _nexttickin);
-    if(tdiff<0){
+    if(tdiff<=0){
       //console.log(i[2],'<',_eobj.now,'triggering');
       //i[0].apply(null,i[1]);
       i[0]();

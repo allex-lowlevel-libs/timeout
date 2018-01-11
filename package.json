@@ -1,6 +1,6 @@
 {
   "name": "allex_timeoutlowlevellib",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "JavaScript timeout handling",
   "main": "index.js",
   "scripts": {

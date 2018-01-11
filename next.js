@@ -57,6 +57,7 @@ function augmentWithNext(isFunction, Fifo, outlib){
     _eobj.now = start;
     //console.log('drainConditionally starting', _immediates.length);
     _immediates.drainConditionally(immediater);
+    _eobj.now = null;
     //console.log('drainConditionally done', _immediates.length);
     if(_immediates.length){
       if (_nexttickin === Infinity) {
@@ -83,7 +84,7 @@ function augmentWithNext(isFunction, Fifo, outlib){
     }
     var ret = _immediates.push([i_p,Date.now()+delay]);
     //console.log('+1', _immediates.length);
-    if((delay<_nexttickin) || (to===null && _immediates.length===1)){
+    if((delay<_nexttickin) || (_eobj.now===null && _immediates.length===1)){
       /*
       if (delay<_nexttickin) {
         console.log('first criterion', delay, _nexttickin, 'delay<_nexttickin', delay<_nexttickin);

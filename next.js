@@ -69,9 +69,7 @@ function augmentWithNext(isFunction, Fifo, outlib){
       go();
     }
     } catch(e) {
-      if (e && e.stack) {
-        console.error(e.stack);
-      }
+      console.error('OTHERWISE_UNCAUGHT_EXCEPTION caught in the "do_immediates" loop');
       console.error(e);
     }
   }

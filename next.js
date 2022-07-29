@@ -31,7 +31,7 @@ function augmentWithNext(isFunction, Fifo, outlib){
   function immediater(i){
     if(i===null){
       console.log('NO IMMEDIATE!');
-      throw 'No immediate';
+      throw new Error('No immediate');
       return;
     }
     var tdiff = i[1]-_eobj.now;
@@ -78,7 +78,7 @@ function augmentWithNext(isFunction, Fifo, outlib){
     var tod = typeof delay;
     if(tod !== 'number'){
       console.trace();
-      throw Error('delay not a number');
+      throw new Error('delay not a number');
     }
     var ret = _immediates.push([i_p,Date.now()+delay]);
     //console.log('+1', _immediates.length);

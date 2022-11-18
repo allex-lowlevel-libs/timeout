@@ -1,7 +1,7 @@
-function createTimeoutLib(isFunction, Fifo) {
+function createTimeoutLib(isFunction, Fifo, nowlib) {
   var ret = {};
   require('./immediates')(ret);
-  require('./next')(isFunction, Fifo, ret);
+  require('./next')(isFunction, Fifo, nowlib, ret);
 
   return ret;
 };

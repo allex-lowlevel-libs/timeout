@@ -1,4 +1,4 @@
-function augmentWithNext(isFunction, Fifo, outlib){
+function augmentWithNext(isFunction, Fifo, nowlib, outlib){
   var _setImmediate = outlib.setImmediate,
     _clearImmediate = outlib.clearImmediate,
     _immediates = new Fifo(),
@@ -53,7 +53,7 @@ function augmentWithNext(isFunction, Fifo, outlib){
       to = null;
     }
     _nexttickin = Infinity;
-    var start  = Date.now();
+    var start  = nowlib.now();
     _eobj.now = start;
     //console.log('drainConditionally starting', _immediates.length);
     _immediates.drainConditionally(immediater);
@@ -80,7 +80,7 @@ function augmentWithNext(isFunction, Fifo, outlib){
       console.trace();
       throw new Error('delay not a number');
     }
-    var ret = _immediates.push([i_p,Date.now()+delay]);
+    var ret = _immediates.push([i_p,nowlib.now()+delay]);
     //console.log('+1', _immediates.length);
     if((delay<_nexttickin) || (_eobj.now===null && _immediates.length===1)){
       /*
